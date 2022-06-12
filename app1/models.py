@@ -31,7 +31,7 @@ class Student(models.Model):
 class Book(models.Model):
     name = models.CharField(max_length=100,null=True,blank=True)
     no_of_pages = models.PositiveIntegerField(null=True,blank=True)
-    student = models.ForeignKey(Student,on_delete=models.DO_NOTHING,related_name="student_book")
+    student = models.ForeignKey(Student,on_delete=models.DO_NOTHING,related_name="student_book",null=True,blank=True)
 
     def __str__(self):
         return self.name
