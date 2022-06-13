@@ -38,8 +38,12 @@ class StudentInfoSerializers(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         res = super().to_representation(instance)
-        res["school"] = instance.school.name
-        res["school_contact_no"] = str(instance.school.contact_no)
+        if instance is None:
+            res["school"] = ""
+            res["school_contact_no"] = str("")
+        else:
+            res["school"] = instance.school.name
+            res["school_contact_no"] = str(instance.school.contact_no)
         return res 
 
     class Meta:
