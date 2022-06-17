@@ -22,6 +22,11 @@ class StudentSerializers(serializers.ModelSerializer):
 
 class StudentInfoSerializers(serializers.ModelSerializer):
     student_book = BookSerializers(many=True)
+    full_name = serializers.SerializerMethodField()
+
+    def get_full_name(self,obj):
+        return f'{obj.first_name} {obj.last_name}'
+
 
     def create(self, validated_data):
         book_data = self.context["book_data"]
@@ -38,7 +43,7 @@ class StudentInfoSerializers(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         res = super().to_representation(instance)
-        if instance is None:
+        if instance.school is None:
             res["school"] = ""
             res["school_contact_no"] = str("")
         else:
@@ -48,5 +53,6 @@ class StudentInfoSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Student
-        fields = "__all__"
+        # fields = '__all__'
+        exclude = ('first_name','last_name',)
         

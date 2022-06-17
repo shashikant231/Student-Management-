@@ -1,7 +1,7 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
-PHONE_HELP_TEXT = "For e.g 1234-567-890, 1234-567890, etc."
+PHONE_HELP_TEXT = "For e.g 9955443322, 1234-567890, etc."
 
 
 # Create your models here.
